@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Identity -->
+    <key>CFBundleName</key>
+    <string>Reclaim</string>
+    <key>CFBundleDisplayName</key>
+    <string>Reclaim</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.ravidor.reclaim</string>
+
+    <!-- Version -->
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <!-- Bundle type -->
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleExecutable</key>
+    <string>Reclaim</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+
+    <!-- macOS requirements -->
+    <key>LSMinimumSystemVersion</key>
+    <string>13.0</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+    <!-- App icon -->
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+
+    <!-- Display / rendering -->
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSSupportsAutomaticGraphicsSwitching</key>
+    <true/>
+
+    <!-- Category shown in Launchpad / Spotlight -->
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+
+    <!-- Human-readable copyright -->
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2024. All rights reserved.</string>
+
+    <!--
+        Privacy usage strings (required if App Sandbox is ever enabled,
+        and shown in System Settings → Privacy if the system asks).
+        These are pre-filled so adding sandbox entitlements later won't break.
+    -->
+    <key>NSDesktopFolderUsageDescription</key>
+    <string>Reclaim needs access to scan and clean up files.</string>
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>Reclaim scans your Downloads folder to help you reclaim disk space.</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>Reclaim needs access to measure cache sizes and clean them up.</string>
+</dict>
+</plist>

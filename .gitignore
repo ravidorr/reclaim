@@ -1,0 +1,17 @@
+# Swift build artifacts
+.build/
+*.o
+*.d
+
+# Generated .app bundle (built by make_app.sh)
+Reclaim.app/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode
+*.xcodeproj
+xcuserdata/
+DerivedData/
