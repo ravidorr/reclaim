@@ -1,6 +1,6 @@
 import Foundation
 
-enum FileCategory: String, CaseIterable, Identifiable {
+public enum FileCategory: String, CaseIterable, Identifiable {
     case images    = "Images"
     case videos    = "Videos"
     case pdfs      = "PDFs"
@@ -9,11 +9,11 @@ enum FileCategory: String, CaseIterable, Identifiable {
     case archives  = "Archives"
     case other     = "Other"
 
-    var id: String { rawValue }
+    public var id: String { rawValue }
 
-    var icon: String { systemImage }
+    public var icon: String { systemImage }
 
-    var systemImage: String {
+    public var systemImage: String {
         switch self {
         case .images:    return "photo.on.rectangle"
         case .videos:    return "film"
@@ -25,9 +25,9 @@ enum FileCategory: String, CaseIterable, Identifiable {
         }
     }
 
-    var displayName: String { rawValue }
+    public var displayName: String { rawValue }
 
-    static func category(for url: URL) -> FileCategory {
+    public static func category(for url: URL) -> FileCategory {
         switch url.pathExtension.lowercased() {
         case "png", "jpg", "jpeg", "gif", "svg", "webp", "bmp", "tiff", "tif", "heic":
             return .images

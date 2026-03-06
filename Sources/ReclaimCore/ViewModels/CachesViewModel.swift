@@ -1,15 +1,17 @@
 import Foundation
 
 @MainActor
-final class CachesViewModel: ObservableObject {
-    @Published var targets: [ManagedCacheTarget] = CacheTarget.all.map { ManagedCacheTarget(target: $0) }
-    @Published var isMeasuringAll = false
+public final class CachesViewModel: ObservableObject {
+    @Published public var targets: [ManagedCacheTarget] = CacheTarget.all.map { ManagedCacheTarget(target: $0) }
+    @Published public var isMeasuringAll = false
 
-    var totalMeasured: Int64 {
+    public init() {}
+
+    public var totalMeasured: Int64 {
         targets.compactMap(\.measuredSize).reduce(0, +)
     }
 
-    func measureAll() async {
+    public func measureAll() async {
         isMeasuringAll = true
         await withTaskGroup(of: Void.self) { group in
             for target in targets {
@@ -19,7 +21,7 @@ final class CachesViewModel: ObservableObject {
         isMeasuringAll = false
     }
 
-    func cleanAll(recordFreed: (Int64) -> Void) async {
+    public func cleanAll(recordFreed: (Int64) -> Void) async {
         for target in targets where target.state == .idle || {
             if case .done = target.state { return false }
             return true
@@ -30,16 +32,16 @@ final class CachesViewModel: ObservableObject {
 }
 
 @MainActor
-final class ManagedCacheTarget: ObservableObject, Identifiable {
-    let id = UUID()
-    let target: CacheTarget
+public final class ManagedCacheTarget: ObservableObject, Identifiable {
+    public let id = UUID()
+    public let target: CacheTarget
 
-    @Published var measuredSize: Int64?
-    @Published var state: State = .idle
+    @Published public var measuredSize: Int64?
+    @Published public var state: State = .idle
 
-    enum State: Equatable {
+    public enum State: Equatable {
         case idle, measuring, cleaning, done(freed: Int64), failed(String)
-        static func == (lhs: State, rhs: State) -> Bool {
+        public static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
             case (.idle, .idle), (.measuring, .measuring), (.cleaning, .cleaning): return true
             case (.done(let a), .done(let b)): return a == b
@@ -49,11 +51,11 @@ final class ManagedCacheTarget: ObservableObject, Identifiable {
         }
     }
 
-    init(target: CacheTarget) {
+    public init(target: CacheTarget) {
         self.target = target
     }
 
-    func measure() async {
+    public func measure() async {
         state = .measuring
         switch target.kind {
         case .directory(let path):
@@ -68,7 +70,7 @@ final class ManagedCacheTarget: ObservableObject, Identifiable {
         state = .idle
     }
 
-    func clean(recordFreed: (Int64) -> Void) async {
+    public func clean(recordFreed: (Int64) -> Void) async {
         state = .cleaning
         do {
             var freed: Int64 = 0

@@ -1,13 +1,13 @@
 import Foundation
 
-struct CacheTarget: Identifiable {
-    let id = UUID()
-    let name: String
-    let icon: String
-    let description: String
-    let kind: Kind
+public struct CacheTarget: Identifiable {
+    public let id = UUID()
+    public let name: String
+    public let icon: String
+    public let description: String
+    public let kind: Kind
 
-    enum Kind {
+    public enum Kind {
         /// Clean by removing a directory
         case directory(path: String)
         /// Clean by running a shell command
@@ -16,9 +16,16 @@ struct CacheTarget: Identifiable {
         case directories(paths: [String])
     }
 
-    // MARK: – Presets
+    public init(name: String, icon: String, description: String, kind: Kind) {
+        self.name = name
+        self.icon = icon
+        self.description = description
+        self.kind = kind
+    }
 
-    static let all: [CacheTarget] = [
+    // MARK: - Presets
+
+    public static let all: [CacheTarget] = [
         CacheTarget(
             name: "User Caches",
             icon: "folder.badge.gear",

@@ -1,10 +1,10 @@
 import Foundation
 
-actor ShellRunner {
-    static let shared = ShellRunner()
+public actor ShellRunner {
+    public static let shared = ShellRunner()
 
     /// Runs a command and returns the combined stdout+stderr output.
-    func run(_ args: [String]) async throws -> String {
+    public func run(_ args: [String]) async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             let process = Process()
             // Use /usr/bin/env so we pick up PATH-installed tools (brew, go, npm, etc.)

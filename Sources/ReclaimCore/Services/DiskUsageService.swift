@@ -1,7 +1,7 @@
 import Foundation
 
-struct DiskUsageService {
-    static func currentUsage() -> DiskUsage {
+public struct DiskUsageService {
+    public static func currentUsage() -> DiskUsage {
         var stat = statfs()
         let root = ("/") as NSString
         guard statfs(root.fileSystemRepresentation, &stat) == 0 else {

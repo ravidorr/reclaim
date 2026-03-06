@@ -1,35 +1,37 @@
 import Foundation
-import SwiftUI
+import Combine
 
 @MainActor
-final class DownloadsViewModel: ObservableObject {
-    @Published var allFiles: [DownloadFile] = []
-    @Published var selectedCategory: FileCategory = .images
-    @Published var selection: Set<DownloadFile> = []
-    @Published var isScanning = false
-    @Published var showDeleteConfirmation = false
+public final class DownloadsViewModel: ObservableObject {
+    @Published public var allFiles: [DownloadFile] = []
+    @Published public var selectedCategory: FileCategory = .images
+    @Published public var selection: Set<DownloadFile> = []
+    @Published public var isScanning = false
+    @Published public var showDeleteConfirmation = false
 
-    var filteredFiles: [DownloadFile] {
+    public init() {}
+
+    public var filteredFiles: [DownloadFile] {
         allFiles.filter { $0.category == selectedCategory }
     }
 
-    var selectedFiles: [DownloadFile] {
+    public var selectedFiles: [DownloadFile] {
         selection.filter { $0.category == selectedCategory }
     }
 
-    var selectionSize: String {
+    public var selectionSize: String {
         let total = selection.reduce(0) { $0 + $1.size }
         return ByteCountFormatter.string(fromByteCount: total, countStyle: .file)
     }
 
-    func scan() async {
+    public func scan() async {
         isScanning = true
         selection = []
         allFiles = await DownloadsScanner.shared.scan()
         isScanning = false
     }
 
-    func deleteSelected(recordFreed: (Int64) -> Void) async {
+    public func deleteSelected(recordFreed: (Int64) -> Void) async {
         let urls = selection.map(\.url)
         let selectedIDs = Set(selection.map(\.id))
         do {
@@ -42,7 +44,7 @@ final class DownloadsViewModel: ObservableObject {
         }
     }
 
-    func toggleSelection(_ file: DownloadFile) {
+    public func toggleSelection(_ file: DownloadFile) {
         if selection.contains(file) {
             selection.remove(file)
         } else {
@@ -50,15 +52,15 @@ final class DownloadsViewModel: ObservableObject {
         }
     }
 
-    func selectAll() {
+    public func selectAll() {
         selection = Set(filteredFiles)
     }
 
-    func deselectAll() {
+    public func deselectAll() {
         selection = selection.filter { $0.category != selectedCategory }
     }
 
-    func selectExtractedArchives() {
+    public func selectExtractedArchives() {
         let extracted = filteredFiles.filter { $0.hasExtractedSibling }
         selection.formUnion(extracted)
     }

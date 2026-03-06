@@ -1,10 +1,10 @@
 import Foundation
 
-actor FileSizeScanner {
-    static let shared = FileSizeScanner()
+public actor FileSizeScanner {
+    public static let shared = FileSizeScanner()
 
     /// Returns the total size in bytes of a directory (or a single file).
-    func size(of path: String) async -> Int64 {
+    public func size(of path: String) async -> Int64 {
         let url = URL(fileURLWithPath: path)
         return await Task.detached(priority: .utility) {
             Self.directorySize(url: url)

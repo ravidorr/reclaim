@@ -1,13 +1,13 @@
 import Foundation
 
-actor DownloadsScanner {
-    static let shared = DownloadsScanner()
+public actor DownloadsScanner {
+    public static let shared = DownloadsScanner()
 
     private let downloadsURL: URL = {
         FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0]
     }()
 
-    func scan() async -> [DownloadFile] {
+    public func scan() async -> [DownloadFile] {
         await Task.detached(priority: .utility) { [downloadsURL] in
             Self.scanDirectory(downloadsURL)
         }.value
