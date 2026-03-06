@@ -1,6 +1,6 @@
 # Reclaim
 
-A native macOS app for reclaiming disk space. Browse and delete files from your Downloads folder by category, measure and clean system caches, and track how much space you've freed — all without touching the terminal.
+A native macOS app for reclaiming disk space. Browse and delete files from your Downloads folder by category, measure and clean system caches, and track how much space you've freed - all without touching the terminal.
 
 ![Platform](https://img.shields.io/badge/platform-macOS%2013%2B-blue)
 ![Swift](https://img.shields.io/badge/swift-5.9-orange)
@@ -34,7 +34,7 @@ Seven category tabs, each with a tailored UI:
 | Documents | File list | Text / HTML / QuickLook |
 | Audio | File list | Play/pause per row |
 | Archives | File list | Extracted-folder warnings |
-| Other | File list | — |
+| Other | File list | - |
 
 Files are moved to **Trash** (not permanently deleted), so mistakes are recoverable.
 
@@ -62,7 +62,7 @@ This will:
 2. Package it as `Reclaim.app`
 3. Copy it to `/Applications`
 
-You can then launch Reclaim from Spotlight (`⌘Space → Reclaim`) or from `/Applications`.
+You can then launch Reclaim from Spotlight or from `/Applications`.
 
 To build without installing:
 ```bash
@@ -127,13 +127,13 @@ reclaim/
 
 ## Tech Stack
 
-- **SwiftUI** — UI, no storyboards
-- **Swift Package Manager** — no Xcode project required
-- **PDFKit** — inline PDF preview
-- **AVKit** — video thumbnails and playback
-- **WebKit** — HTML file preview
-- **Foundation.Process** — shell command execution
-- **NSWorkspace.recycle** — safe Trash-based deletion
+- **SwiftUI** - UI, no storyboards
+- **Swift Package Manager** - no Xcode project required
+- **PDFKit** - inline PDF preview
+- **AVKit** - video thumbnails and playback
+- **WebKit** - HTML file preview
+- **Foundation.Process** - shell command execution
+- **NSWorkspace.recycle** - safe Trash-based deletion
 
 No third-party dependencies.
 
@@ -141,4 +141,4 @@ No third-party dependencies.
 
 ## Sharing
 
-The build script produces an ad-hoc signed universal binary. Recipients on Apple Silicon or Intel Macs will need to right-click → Open the first time to bypass Gatekeeper (standard for apps not distributed through the App Store).
+The build script produces an ad-hoc signed universal binary. Recipients on Apple Silicon or Intel Macs will need to right-click and open the first time to bypass Gatekeeper (standard for apps not distributed through the App Store).
